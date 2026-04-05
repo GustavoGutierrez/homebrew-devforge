@@ -4,20 +4,20 @@ class Devforge < Formula
   desc "DevForge CLI, MCP server, and bundled DevPixelForge runtime"
   homepage "https://github.com/GustavoGutierrez/devforge"
   license "GPL-3.0"
-  version "2.1.0"
+  version "2.1.1"
 
   on_linux do
     depends_on arch: :x86_64
 
     url "https://github.com/GustavoGutierrez/devforge/releases/download/v#{version}/devforge_#{version}_linux_amd64.tar.gz"
-    sha256 "38ff1e5a65e5dc10cb3cb1562eb13bb23dc6b0ff599209e4b6decaae08c06606"
+    sha256 "5b7459a2e6548b2bf8685120627573d150649e06f87c2ebfb4cb968b8aa75252"
   end
 
   on_macos do
     depends_on arch: :arm64
 
     url "https://github.com/GustavoGutierrez/devforge/releases/download/v#{version}/devforge_#{version}_darwin_arm64.tar.gz"
-    sha256 "e441fde8b22912297cdac643ab247799890971c105a1d5eef3c8eda84cda31ce"
+    sha256 "3cb897c59190ba2f058a02b8fc1cf61f688f21b00368d279633c9a4159e21286"
   end
 
   depends_on "ffmpeg"
@@ -32,12 +32,8 @@ class Devforge < Formula
     dpf_src = %w[dpf dpf-dpf-linux-amd64 dpf-dpf-macos-arm64].find { |f| File.exist?(f) }
     raise "dpf binary not found in bundle (expected: dpf, dpf-dpf-linux-amd64, or dpf-dpf-macos-arm64)" unless dpf_src
 
-    libexec.install "devforge", "devforge-mcp"
-    libexec.install dpf_src => "dpf"
-
-    (bin/"devforge").write_env_script libexec/"devforge"
-    (bin/"devforge-mcp").write_env_script libexec/"devforge-mcp"
-    bin.install_symlink libexec/"dpf"
+    bin.install "devforge", "devforge-mcp"
+    bin.install dpf_src => "dpf"
   end
 
   def post_install
