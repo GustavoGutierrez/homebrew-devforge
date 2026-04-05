@@ -4,23 +4,21 @@ class Devforge < Formula
   desc "DevForge CLI, MCP server, and bundled DevPixelForge runtime"
   homepage "https://github.com/GustavoGutierrez/devforge"
   license "GPL-3.0"
-  version "2.1.1"
+  version "2.1.2"
 
   on_linux do
     depends_on arch: :x86_64
 
     url "https://github.com/GustavoGutierrez/devforge/releases/download/v#{version}/devforge_#{version}_linux_amd64.tar.gz"
-    sha256 "5b7459a2e6548b2bf8685120627573d150649e06f87c2ebfb4cb968b8aa75252"
+    sha256 "e585a44a6e819154a12a37f1f7b3d396956427a9b0ac2f6de38232b262cf0aae"
   end
 
   on_macos do
     depends_on arch: :arm64
 
     url "https://github.com/GustavoGutierrez/devforge/releases/download/v#{version}/devforge_#{version}_darwin_arm64.tar.gz"
-    sha256 "3cb897c59190ba2f058a02b8fc1cf61f688f21b00368d279633c9a4159e21286"
+    sha256 "03e0b916f904b7294406b8bb91990e597b9a5586bc946e2b794c503c91d29aac"
   end
-
-  depends_on "ffmpeg"
 
   def install
     # dpf is bundled as a pre-built binary from DevPixelForge releases.
@@ -37,8 +35,8 @@ class Devforge < Formula
   end
 
   def post_install
-    config_dir = Dir.home.join(".config", "devforge")
-    config_file = config_dir.join("config.json")
+    config_dir = Pathname.new(Dir.home)/".config"/"devforge"
+    config_file = config_dir/"config.json"
     return if config_file.exist?
 
     config_dir.mkpath
@@ -60,6 +58,9 @@ class Devforge < Formula
         - dpf            (DevPixelForge media engine)
 
       Config file: ~/.config/devforge/config.json
+
+      For media processing tools (video/audio via dpf), install ffmpeg:
+        brew install ffmpeg
     EOS
   end
 
