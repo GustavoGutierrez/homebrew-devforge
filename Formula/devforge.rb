@@ -10,14 +10,14 @@ class Devforge < Formula
     depends_on arch: :x86_64
 
     url "https://github.com/GustavoGutierrez/devforge/releases/download/v#{version}/devforge_#{version}_linux_amd64.tar.gz"
-    sha256 "601a8be809fcfac7d5cff1d6f2214d9e3567024337ba9ccb3086ac871956a00b"
+    sha256 "e03e6e14641d8d49cb69c9c8925fee3bdd2f245271597d8a84ad8190a15b1130"
   end
 
   on_macos do
     depends_on arch: :arm64
 
     url "https://github.com/GustavoGutierrez/devforge/releases/download/v#{version}/devforge_#{version}_darwin_arm64.tar.gz"
-    sha256 "97650a98035685cffb58e2a7b3ee2813e3df5598b7021f055480b2c9e56be5e9"
+    sha256 "4e7199ded3a0233b58684e576b8dfbd0833f565b951e11aa1872865e73aa8e0e"
   end
 
   def install
