@@ -3,7 +3,7 @@
 class Devforge < Formula
   desc "DevForge CLI, MCP server, and bundled DevPixelForge runtime"
   homepage "https://github.com/GustavoGutierrez/devforge"
-  license "GPL-3.0"
+  license "MIT"
   version "2.5.0"
 
   on_linux do
